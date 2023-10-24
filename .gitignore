@@ -9,4 +9,4 @@ a.out
 .vscode/
 .editorconfig
 .metals/
-/ft_*
+test_ft_printf
