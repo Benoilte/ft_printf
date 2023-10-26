@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:49:04 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/26 21:42:21 by bebrandt         ###   ########.fr       */
+/*   Created: 2023/10/26 21:25:52 by bebrandt          #+#    #+#             */
+/*   Updated: 2023/10/26 22:12:32 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_print_hex(char c, int n, t_list *lst)
 {
-	va_list	args;
-	int		len;
-
-	len = 0;
-	va_start(args, format);
-	len = ft_parse_format(format, args);
-	va_end(args);
-	return (len);
+	(void)lst;
+	n = 3;
+	ft_putstr_fd("HE", 1);
+	ft_putchar_fd(c, 1);
+	return (n);
 }
