@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_is_flag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:49:04 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/26 21:42:21 by bebrandt         ###   ########.fr       */
+/*   Created: 2023/10/26 11:43:44 by bebrandt          #+#    #+#             */
+/*   Updated: 2023/10/26 11:51:11 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+/*
+check if 'c' char is a printf 'flag'.
+flags handled are '-' '0' '.' '#' ' ' '+'
+if 'c' is one of a flag return 1 - otherwise return 0
+*/
+int	ft_is_flag(char c)
 {
-	va_list	args;
-	int		len;
+	int		i;
+	char	*set;
 
-	len = 0;
-	va_start(args, format);
-	len = ft_parse_format(format, args);
-	va_end(args);
-	return (len);
+	i = 0;
+	set = "-0.# +";
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }
