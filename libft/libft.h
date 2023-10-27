@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:42:12 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/23 15:48:54 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:19:21 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include	<stdlib.h>
 
 // libft function corresponding to the man in libc
+
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -41,7 +42,9 @@ void	*ft_calloc(size_t count, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+
 // libft additionnal function
+
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -53,10 +56,27 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-// libft function to manipulate linked list
+
+/*
 typedef struct s_list
 {
 	void			*content;
+	struct s_list	*next;
+}		t_list;
+*/
+
+// libft function to manipulate linked list
+
+typedef struct s_list
+{
+	char			flag_plus;
+	char			flag_minus;
+	char			flag_zero;
+	char			flag_space;
+	char			flag_hash;
+	int				width;
+	int				precision;
+	char			specifier;
 	struct s_list	*next;
 }		t_list;
 int		ft_lstsize(t_list *lst);
