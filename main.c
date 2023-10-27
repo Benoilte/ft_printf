@@ -6,20 +6,142 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:47:48 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 12:04:29 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:16:29 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+void	test_print_char(void);
+void	test_print_string(void);
+
 int		main(void)
 {
+	test_print_char();
+	test_print_string();
+	/*
 	int	count;
-
-	count = ft_printf("Hello%++00--  ##.42c--%dWorld!\n", 33, 24);
+	count = ft_printf("Hello%++00--  ##.c--%dWorld!\n", 33, 24);
 	printf("count: %d\n", count);
 	printf("[%10.2s]\n", "hello");
-	printf("[%+++++++000000004d]\n", 42);
-	printf("[%+04i]\n", 42);
+	printf("[%+++++++0000+++00004d]\n", 42);
+	printf("[%-4i]\n", 42);
+	printf("[%#x]\n", -10);
+	printf("[%25p]\n", &count);
+	printf("[%010u]\n", 42);
+	printf("[%10.3s]\n", "coucou");
+	printf("[%10c]\n", 'a');
+	printf("[%010%]\n");
+	*/
 	return (0);
+}
+
+void	test_length(int	printf_len, int ft_printf_len)
+{
+	if (printf_len - ft_printf_len)
+		ft_printf("length are different, printf_len: %d and ft_printf_len: %d\n", printf_len, ft_printf_len);
+	else
+		ft_printf("length are the same\n");
+}
+
+void	test_print_char(void)
+{
+	int	ft_printf_len;
+	int	printf_len;
+
+	printf("Test print char:\n");
+	ft_printf("ft_printf: [%c]\n", 'a');
+	printf("   printf: [%c]\n", 'a');
+	
+	ft_printf("\nTest print char with flag '-' width of 10:\n");
+	ft_printf("ft_printf: [%-10c]\n", 'a');
+	printf("   printf: [%-10c]\n", 'a');
+	
+	ft_printf("\nTest print char with no flags and width of 10:\n");
+	ft_printf("ft_printf: [%10c]\n", 'a');
+	printf("   printf: [%10c]\n", 'a');
+	
+	ft_printf("\nTest print char with several value:\n");
+	ft_printf("ft_printf: [%10c]  [%-10c]  [%42c]\n", 'a', 'b', 'c');
+	printf("   printf: [%10c]  [%-10c]  [%42c]\n", 'a', 'b', 'c');
+	
+	printf("\nLENGTTH TEST\n");
+	ft_printf_len = ft_printf("test: [%c]\n", 'a');
+	printf_len = printf("test: [%c]\n", 'a');
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\nTest print char with flag '-' width of 10:\n");
+	ft_printf_len = ft_printf("test: [%-10c]\n", 'a');
+	printf_len = printf("test: [%-10c]\n", 'a');
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\nTest print char with no flags and width of 10:\n");
+	ft_printf_len = ft_printf("test: [%10c]\n", 'a');
+	printf_len = printf("test: [%10c]\n", 'a');
+	test_length(printf_len, ft_printf_len);
+	
+	ft_printf("\nTest print char with several value:\n");
+	ft_printf_len = ft_printf("test: [%10c]  [%-10c]  [%42c]\n", 'a', 'b', 'c');
+	printf_len = printf("test: [%10c]  [%-10c]  [%42c]\n", 'a', 'b', 'c');
+	test_length(printf_len, ft_printf_len);
+}
+
+void	test_print_string(void)
+{
+	int	ft_printf_len;
+	int	printf_len;
+
+	printf("\nTest print string:\n");
+	ft_printf("ft_printf: [%s]\n", "coucou");
+	printf("   printf: [%s]\n", "coucou");
+	
+	ft_printf("\nTest print string with flag '-' width of 10:\n");
+	ft_printf("ft_printf: [%-10s]\n", "coucou");
+	printf("   printf: [%-10s]\n", "coucou");
+	
+	ft_printf("\nTest print string with flag '-' width of 10 and precision of 3:\n");
+	ft_printf("ft_printf: [%-10.3s]\n", "coucou");
+	printf("   printf: [%-10.3s]\n", "coucou");
+	
+	ft_printf("\nTest print string with no flags and width of 10:\n");
+	ft_printf("ft_printf: [%10s]\n", "coucou");
+	printf("   printf: [%10s]\n", "coucou");
+	
+	ft_printf("\nTest print string with no flags, width of 10 and precision of 3:\n");
+	ft_printf("ft_printf: [%10.3s]\n", "coucou");
+	printf("   printf: [%10.3s]\n", "coucou");
+	
+	ft_printf("\nTest print string with several value:\n");
+	ft_printf("ft_printf: [%10s]  [%-10s]  [%42s]  [%10.3s]  [%-10s]\n", "coucou", "coucou", "coucou", "coucou", "coucou");
+	printf("   printf: [%10s]  [%-10s]  [%42s]  [%10.3s]  [%-10s]\n", "coucou", "coucou", "coucou", "coucou", "coucou");
+	
+	printf("\nLENGTTH TEST\n");
+	ft_printf_len = ft_printf("test: [%s]\n", "coucou");
+	printf_len = printf("test: [%s]\n", "coucou");
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\nTest print string with flag '-' width of 10:\n");
+	ft_printf_len = ft_printf("test: [%-10s]\n", "coucou");
+	printf_len = printf("test: [%-10s]\n", "coucou");
+	test_length(printf_len, ft_printf_len);
+	
+	ft_printf("\nTest print string with flag '-' width of 10 and precision of 3:\n");
+	ft_printf_len = ft_printf("test: [%-10.3s]\n", "coucou");
+	printf_len = printf("test: [%-10.3s]\n", "coucou");
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\nTest print string with no flags and width of 10:\n");
+	ft_printf_len = ft_printf("test: [%10s]\n", "coucou");
+	printf_len = printf("test: [%10s]\n", "coucou");
+	test_length(printf_len, ft_printf_len);
+	
+	ft_printf("\nTest print string with no flags, width of 10 and precision of 3:\n");
+	ft_printf_len = ft_printf("test: [%10.3s]\n", "coucou");
+	printf_len = printf("test: [%10.3s]\n", "coucou");
+	test_length(printf_len, ft_printf_len);
+	
+	ft_printf("\nTest print string with several value:\n");
+	ft_printf_len = ft_printf("test: [%10s]  [%-10s]  [%42s]  [%10.3s]  [%-10s]\n", "coucou", "coucou", "coucou", "coucou", "coucou");
+	printf_len = printf("test: [%10s]  [%-10s]  [%42s]  [%10.3s]  [%-10s]\n", "coucou", "coucou", "coucou", "coucou", "coucou");
+	test_length(printf_len, ft_printf_len);
 }

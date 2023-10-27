@@ -6,15 +6,46 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:20:45 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 12:57:48 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:11:03 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static void	ft_printstr_fd(char *s, int fd, int len);
+
 int	ft_print_str(char *s, t_printf_lst *lst)
 {
-	(void)lst;
-	ft_putstr_fd(s, 1);
-	return (ft_strlen(s));
+	int		str_len;
+
+	str_len = ft_strlen(s);
+	if (lst->precision && lst->precision < str_len)
+		str_len = lst->precision;
+	if (lst->flag_minus && lst->width > str_len)
+	{
+		ft_printstr_fd(s, 1, str_len);
+		ft_print_width_fd(lst->width - str_len, 1, 0);
+		return (lst->width);
+	}
+	else if (lst->width > 1)
+	{
+		ft_print_width_fd(lst->width - str_len, 1, 0);
+		ft_printstr_fd(s, 1, str_len);
+		return (lst->width);
+	}
+	else
+	{
+		ft_printstr_fd(s, 1, str_len);
+		return (str_len);
+	}
+}
+
+static void	ft_printstr_fd(char *s, int fd, int len)
+{
+	while (len > 0)
+	{
+		ft_putchar_fd(*s, fd);
+		len--;
+		s++;
+	}
 }
