@@ -6,13 +6,13 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:22:19 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 11:39:51 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 12:56:54 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_arg(va_list args, t_list *lst)
+int	ft_print_arg(va_list args, t_printf_lst *lst)
 {
 	if (lst->specifier == 'c')
 		return (ft_print_char(va_arg(args, unsigned int), lst));

@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:55:44 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 10:26:30 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:33:21 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Deletes and free the memory of the element passed as parameter 
 and all the following elements
 */
-void	ft_lstclear(t_list **lst, void (*del)(t_list *))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*next_el;
 
@@ -28,6 +28,6 @@ void	ft_lstclear(t_list **lst, void (*del)(t_list *))
 		ft_lstdelone(*lst, del);
 		*lst = next_el;
 	}
-	free(*lst);	
+	free(*lst);
 	*lst = (void *)0;
 }
