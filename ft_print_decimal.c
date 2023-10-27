@@ -6,13 +6,13 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:21:58 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 11:41:39 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 12:57:07 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_decimal(int n, t_list *lst)
+int	ft_print_decimal(int n, t_printf_lst *lst)
 {
 	(void)lst;
 	ft_putnbr_fd(n, 1);

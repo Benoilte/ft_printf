@@ -6,13 +6,13 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:20:45 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/26 22:08:18 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 12:57:48 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_str(char *s, t_list *lst)
+int	ft_print_str(char *s, t_printf_lst *lst)
 {
 	(void)lst;
 	ft_putstr_fd(s, 1);
