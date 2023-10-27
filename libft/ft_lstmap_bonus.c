@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:47:18 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:13 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:06:26 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 Creates a new list resulting of the successive applications of f on each 
 element's content. the new list is freed if memory allocation is not correct
 */
+/*
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_el;
@@ -37,3 +38,4 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (cp_lst);
 }
+*/
