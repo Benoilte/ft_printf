@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:42:40 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:23 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:52:58 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 Create a new t_list struct with malloc. assign var member content with
 params 'content' and assign var member next to NULL
 */
+/*
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
@@ -27,3 +28,4 @@ t_list	*ft_lstnew(void *content)
 	new->next = (void *)0;
 	return (new);
 }
+*/
