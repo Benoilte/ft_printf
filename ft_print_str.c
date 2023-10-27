@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:20:45 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 16:11:03 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:21:46 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int	ft_print_str(char *s, t_printf_lst *lst)
 {
 	int		str_len;
 
+	if (!s)
+		s = "(null)";
 	str_len = ft_strlen(s);
-	if (lst->precision && lst->precision < str_len)
+	if (lst->precision >= 0 && lst->precision < str_len)
 		str_len = lst->precision;
 	if (lst->flag_minus && lst->width > str_len)
 	{
