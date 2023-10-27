@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:22:19 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 12:56:54 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:35:14 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	ft_print_arg(va_list args, t_printf_lst *lst)
 	if (lst->specifier == 'x' || lst->specifier == 'X')
 		return (ft_print_hex(va_arg(args, int), lst));
 	if (lst->specifier == '%')
-		return (ft_print_percent(lst));
+		return (ft_print_char('%', lst));
 	return (0);
 }

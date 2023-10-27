@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:28:31 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 13:00:49 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:18:41 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_parse_format(const char *format, va_list args)
 			if (!ft_is_specifier(lst->specifier))
 				return (-1);
 			len += ft_print_arg(args, lst);
-			set(lst);
 			free(lst);
 			i++;
 		}
@@ -76,6 +75,7 @@ static void	ft_get_flags_specifier(const char *format, int *i, t_printf_lst *lst
 		lst->width = ft_get_digit(format + j, &j);
 	if (format[j] == '.')
 	{
+		lst->precision = 0;
 		j += 1;
 		if (ft_isdigit(format[j]))
 			lst->precision = ft_get_digit(format + j, &j);
@@ -110,7 +110,7 @@ void	set(t_printf_lst *lst)
 	lst->flag_space = 0;
 	lst->flag_hash = 0;
 	lst->width = 0;
-	lst->precision = 0;
+	lst->precision = -1;
 	lst->specifier = 0;
 	lst->next = NULL;
 }

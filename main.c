@@ -6,18 +6,20 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:47:48 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 16:16:29 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:30:11 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 void	test_print_char(void);
+void	test_print_percent(void);
 void	test_print_string(void);
 
 int		main(void)
 {
 	test_print_char();
+	test_print_percent();
 	test_print_string();
 	/*
 	int	count;
@@ -26,10 +28,10 @@ int		main(void)
 	printf("[%10.2s]\n", "hello");
 	printf("[%+++++++0000+++00004d]\n", 42);
 	printf("[%-4i]\n", 42);
+	printf("[%10.s]\n", "coucou");
 	printf("[%#x]\n", -10);
 	printf("[%25p]\n", &count);
 	printf("[%010u]\n", 42);
-	printf("[%10.3s]\n", "coucou");
 	printf("[%10c]\n", 'a');
 	printf("[%010%]\n");
 	*/
@@ -86,6 +88,48 @@ void	test_print_char(void)
 	test_length(printf_len, ft_printf_len);
 }
 
+void	test_print_percent(void)
+{
+	int	ft_printf_len;
+	int	printf_len;
+
+	printf("\nTest print percent:\n");
+	ft_printf("ft_printf: [%%]\n");
+	printf("   printf: [%%]\n");
+	
+	ft_printf("\nTest print percent with flag '-' width of 10:\n");
+	ft_printf("ft_printf: [%-10%]\n");
+	printf("   printf: [%-10%]\n");
+	
+	ft_printf("\nTest print percent with no flags and width of 10:\n");
+	ft_printf("ft_printf: [%10%]\n");
+	printf("   printf: [%10%]\n");
+	
+	ft_printf("\nTest print percent with several value:\n");
+	ft_printf("ft_printf: [%10%]  [%-10%]  [%42%]\n");
+	printf("   printf: [%10%]  [%-10%]  [%42%]\n");
+	
+	printf("\nLENGTTH TEST\n");
+	ft_printf_len = ft_printf("test: [%%]\n");
+	printf_len = printf("test: [%%]\n");
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\nTest print percent with flag '-' width of 10:\n");
+	ft_printf_len = ft_printf("test: [%-10%]\n");
+	printf_len = printf("test: [%-10%]\n");
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\nTest print percent with no flags and width of 10:\n");
+	ft_printf_len = ft_printf("test: [%10%]\n");
+	printf_len = printf("test: [%10%]\n");
+	test_length(printf_len, ft_printf_len);
+	
+	ft_printf("\nTest print percent with several value:\n");
+	ft_printf_len = ft_printf("test: [%10%]  [%-10%]  [%42%]\n");
+	printf_len = printf("test: [%10%]  [%-10%]  [%42%]\n");
+	test_length(printf_len, ft_printf_len);
+}
+
 void	test_print_string(void)
 {
 	int	ft_printf_len;
@@ -94,6 +138,10 @@ void	test_print_string(void)
 	printf("\nTest print string:\n");
 	ft_printf("ft_printf: [%s]\n", "coucou");
 	printf("   printf: [%s]\n", "coucou");
+
+	printf("\nTest print string NULL value:\n");
+	ft_printf("ft_printf: [%10s]\n", NULL);
+	printf("   printf: [%10s]\n", NULL);
 	
 	ft_printf("\nTest print string with flag '-' width of 10:\n");
 	ft_printf("ft_printf: [%-10s]\n", "coucou");
@@ -118,6 +166,11 @@ void	test_print_string(void)
 	printf("\nLENGTTH TEST\n");
 	ft_printf_len = ft_printf("test: [%s]\n", "coucou");
 	printf_len = printf("test: [%s]\n", "coucou");
+	test_length(printf_len, ft_printf_len);
+	
+	ft_printf("\nTest print string NULL value\n");
+	ft_printf_len = ft_printf("test: [%10s]\n", NULL);
+	printf_len = printf("test: [%10s]\n", NULL);
 	test_length(printf_len, ft_printf_len);
 	
 	printf("\nTest print string with flag '-' width of 10:\n");
