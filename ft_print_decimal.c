@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:21:58 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/26 22:41:55 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:41:39 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	ft_print_decimal(int n, t_list *lst)
 {
 	(void)lst;
-	//printf("decimal: %d\n", n);
 	ft_putnbr_fd(n, 1);
 	return (1);
 }

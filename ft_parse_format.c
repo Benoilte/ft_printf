@@ -6,15 +6,16 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:28:31 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/26 22:39:48 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 12:03:27 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_get_flags_specifier(const char *format, int *i, t_list **lst);
-static char	*ft_get_digit(const char *s, int *i);
-void		del(void *content);
+static void	ft_get_flags_specifier(const char *format, int *i, t_list *lst);
+static int	ft_get_digit(const char *s, int *i);
+void		set(t_list *lst);
+void		del(t_list *lst);
 
 int	ft_parse_format(const char *format, va_list args)
 {
@@ -24,22 +25,21 @@ int	ft_parse_format(const char *format, va_list args)
 
 	len = 0;
 	i = 0;
-	lst = NULL;
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			i++;
 			//printf("\nformat[%d]: %c\n", i, format[i]);
-			ft_get_flags_specifier(format + i, &i, &lst);
-			if (!ft_is_specifier(format[i]))
+			//printf("\nlst->specifier: %c\n", lst->specifier);
+			lst = (t_list *)malloc(sizeof(t_list));
+			set(lst);
+			i++;
+			ft_get_flags_specifier(format + i, &i, lst);
+			if (!ft_is_specifier(lst->specifier))
 				return (-1);
-			len += ft_print_arg(format[i], args, lst);
+			len += ft_print_arg(args, lst);
 			ft_lstclear(&lst, &del);
-			//printf("\nformat[%d]: %c\n", i, format[i]);
 			i++;
-			//printf("\nformat[%d]: %c\n", i, format[i]);
-
 		}
 		else
 		{
@@ -51,42 +51,77 @@ int	ft_parse_format(const char *format, va_list args)
 	return (len);
 }
 
-static void	ft_get_flags_specifier(const char *format, int *i, t_list **lst)
+static void	ft_get_flags_specifier(const char *format, int *i, t_list *lst)
 {
-	while (ft_is_flag(format[*i]) && format[*i])
-	{
-		ft_lstadd_back(lst, ft_lstnew(ft_substr(format + *i, 0, 1)));
-		*i += 1;
+	int		j;
+
+	j = 0;
+	while (ft_is_flag(format[j]) && format[j] != '\0')
+	{	
+		if (format[j] == '0')
+			lst->flag_zero = 1;
+		if (format[j] == '+')
+			lst->flag_plus = 1;
+		if (format[j] == '-')
+			lst->flag_minus = 1;
+		if (format[j] == ' ')
+			lst->flag_space = 1;
+		if (format[j] == '#')
+			lst->flag_hash = 1;
+		j += 1;
 	}
-	if (ft_isdigit(format[*i]))
-		ft_lstadd_back(lst, ft_lstnew(ft_get_digit(format + *i, i)));
-	if (format[*i] == '.')
+	if (ft_isdigit(format[j]))
+		lst->width = ft_get_digit(format + j, &j);
+	if (format[j] == '.')
 	{
-		ft_lstadd_back(lst, ft_lstnew(ft_substr(format + *i, 0, 1)));
-		*i += 1;
-		if (ft_isdigit(format[*i]))
-			ft_lstadd_back(lst, ft_lstnew(ft_get_digit(format + *i, i)));
+		j += 1;
+		if (ft_isdigit(format[j]))
+			lst->precision = ft_get_digit(format + j, &j);
 	}
-	if (ft_is_specifier(format[*i]))
-		ft_lstadd_back(lst, ft_lstnew(ft_substr(format + *i, 0, 1)));
+	if (ft_is_specifier(format[j]))
+		lst->specifier = format[j];
+	*i += j;
 }
 
-static char	*ft_get_digit(const char *s, int *i)
+static int	ft_get_digit(const char *s, int *j)
 {
 	int		end;
+	int		num;
 	char	*str_digit;
 
-	end = *i;
-	end++;
+	end = 0;
+	end = 1;
 	while (ft_isdigit(s[end]) && s[end])
 		end++;
-	str_digit = ft_substr(s + *i, 0, *i - end);
-	*i = end;
-	*i += 1;
-	return(str_digit);
+	str_digit = ft_substr(s, 0, end);
+	num = ft_atoi(str_digit);
+	free(str_digit);
+	*j += end;
+	return(num);
 }
 
-void	del(void *content)
+void	set(t_list *lst)
 {
-	free(content);
+	lst->flag_zero = 0;
+	lst->flag_plus = 0;
+	lst->flag_minus = 0;
+	lst->flag_space = 0;
+	lst->flag_hash = 0;
+	lst->width = 0;
+	lst->precision = 0;
+	lst->specifier = 0;
+	lst->next = NULL;
+}
+
+void	del(t_list *lst)
+{
+	lst->flag_zero = 0;
+	lst->flag_plus = 0;
+	lst->flag_minus = 0;
+	lst->flag_space = 0;
+	lst->flag_hash = 0;
+	lst->width = 0;
+	lst->precision = 0;
+	lst->specifier = 0;
+	lst->next = NULL;
 }

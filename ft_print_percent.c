@@ -6,15 +6,15 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:26:26 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/26 22:13:42 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:49:16 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_percent(char c, t_list *lst)
+int	ft_print_percent(t_list *lst)
 {
 	(void)lst;
-	ft_putchar_fd(c, 1);
+	ft_putchar_fd(lst->specifier, 1);
 	return (1);
 }
