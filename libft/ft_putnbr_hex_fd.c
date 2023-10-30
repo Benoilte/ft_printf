@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_hex_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 09:26:30 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 10:50:28 by bebrandt         ###   ########.fr       */
+/*   Created: 2023/10/30 09:04:16 by bebrandt          #+#    #+#             */
+/*   Updated: 2023/10/30 11:02:41 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-Writes the int 'n' on the file descriptor 'fd'
+Convert the unsigned int 'n' into its corresponding hex nbr 
+and writes it on the file descriptor 'fd'
 */
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_hex_fd(unsigned int uint, int fd)
 {
-	long int	nbr;
+	char	*str_hex;
 
-	nbr = n;
-	if (nbr < 0)
-	{
-		ft_putchar_fd('-', fd);
-		nbr *= -1;
-	}
-	if (nbr > 9)
-		ft_putnbr_fd(nbr / 10, fd);
-	ft_putchar_fd(((nbr % 10) + 48), fd);
+	str_hex = "0123456789abcdef";
+	if (uint > 15)
+		ft_putnbr_hex_fd((uint / 16), fd);
+	ft_putchar_fd(str_hex[uint % 16], fd);
 }

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_uint_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 09:26:30 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 10:50:28 by bebrandt         ###   ########.fr       */
+/*   Created: 2023/10/30 10:04:55 by bebrandt          #+#    #+#             */
+/*   Updated: 2023/10/30 10:10:58 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-Writes the int 'n' on the file descriptor 'fd'
+Writes the unsigned int 'uint' on the file descriptor 'fd'
 */
-void	ft_putnbr_fd(int n, int fd)
-{
-	long int	nbr;
 
-	nbr = n;
-	if (nbr < 0)
+void	ft_putnbr_uint_fd(unsigned int uint, int fd)
+{
+	if (uint == 0)
 	{
-		ft_putchar_fd('-', fd);
-		nbr *= -1;
+		ft_putchar_fd('0', fd);
+		return ;
 	}
-	if (nbr > 9)
-		ft_putnbr_fd(nbr / 10, fd);
-	ft_putchar_fd(((nbr % 10) + 48), fd);
+	if (uint > 9)
+		ft_putnbr_uint_fd(uint / 10, fd);
+	ft_putchar_fd(((uint % 10) + 48), fd);
 }
