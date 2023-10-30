@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:47:48 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 21:23:10 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 21:28:16 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	test_print_ptr(void);
 
 int		main(void)
 {
-	// test_print_char();
+	test_print_char();
 	// test_print_percent();
-	// test_print_string();
-	// test_print_hex_lowercase();
-	// test_print_hex_uppercase();
-	// test_print_ptr();
-	// test_print_integer_as_decimal();
+	test_print_string();
+	test_print_hex_lowercase();
+	test_print_hex_uppercase();
+	test_print_uint();
+	test_print_decimal();
+	test_print_integer_as_decimal();
 	test_print_integer_as_hex();
 	test_print_integer_as_oct();
-	// test_print_decimal();
-	// test_print_uint();
+	test_print_ptr();
 	// ft_printf("[%s]\n", ft_itoa_hex(-874521));
 	// printf("[%x]\n", -874521);
 	// int	count;
