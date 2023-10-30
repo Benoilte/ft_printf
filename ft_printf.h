@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:24:40 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 14:30:50 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 20:35:36 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdarg.h>
+# include <stdint.h>
 # include "libft/libft.h"
 
 typedef struct s_printf_lst
@@ -43,6 +44,7 @@ int		ft_print_int(int n, t_printf_lst *lst);
 int		ft_print_hex(unsigned int uint, t_printf_lst *lst);
 int		ft_print_uint(unsigned int uint, t_printf_lst *lst);
 int		ft_print_percent(t_printf_lst *lst);
+int		ft_print_hex_format(char *hex_nbr, t_printf_lst *lst);
 void	ft_print_width_fd(int width, int fd, int flag_zero);
 void	ft_print_precision_fd(int len, int fd);
 
