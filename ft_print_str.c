@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:20:45 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 17:21:46 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:56:47 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_print_str(char *s, t_printf_lst *lst)
 		ft_print_width_fd(lst->width - str_len, 1, 0);
 		return (lst->width);
 	}
-	else if (lst->width > 1)
+	else if (lst->width > str_len)
 	{
 		ft_print_width_fd(lst->width - str_len, 1, 0);
 		ft_printstr_fd(s, 1, str_len);
