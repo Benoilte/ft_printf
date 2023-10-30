@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:47:48 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 08:51:25 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:00:19 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ void	test_print_string(void);
 
 int		main(void)
 {
-	test_print_char();
-	test_print_percent();
-	test_print_string();
+	// test_print_char();
+	// test_print_percent();
+	// test_print_string();
+	ft_putnbr_hex_fd(-1, 1);
+	ft_putchar_fd('\n', 1);
+	printf("%x\n", -1);
 	/*
 	int	count;
 	count = ft_printf("Hello%++00--  ##.c--%dWorld!\n", 33, 24);
