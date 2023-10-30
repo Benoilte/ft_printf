@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:42:12 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 11:33:37 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 20:39:47 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_itoa_uint(unsigned int uint);
-char	*ft_itoa_hex(unsigned int uint);
+char	*ft_itoa_hex(long unsigned int uint);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
