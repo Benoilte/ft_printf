@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:47:48 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 15:57:30 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:12:51 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int		main(void)
 	// test_print_char();
 	// test_print_percent();
 	// test_print_string();
-	// test_print_hex_lowercase();
-	// test_print_hex_uppercase();
-	test_print_uint();
+	test_print_hex_lowercase();
+	test_print_hex_uppercase();
+	// test_print_uint();
 	// ft_printf("[%s]\n", ft_itoa_hex(-874521));
 	// printf("[%x]\n", -874521);
 	// int	count;
@@ -199,6 +199,11 @@ void	test_print_hex_lowercase(void)
 	printf_len = printf("***printf: [%#10.5x]\n", 42);
 	test_length(printf_len, ft_printf_len);
 	
+	printf("\n\033[33mTest print hex with width of 10 and precison of 5:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10.5x]\n", 42);
+	printf_len = printf("***printf: [%10.5x]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
 	ft_printf("\n\033[33mTest print hex with several value:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%10x]  [%-10x]  [%42x]  [%010x]  [%0#10x]  [%-#10x] [%-#10.5x]  [%#10.5x]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
 	printf_len = printf("***printf: [%10x]  [%-10x]  [%42x]  [%010x]  [%0#10x]  [%-#10x] [%-#10.5x]  [%#10.5x]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
@@ -249,6 +254,11 @@ void	test_print_hex_uppercase(void)
 	printf("\n\033[33mTest print hex with '#', width of 10 and precison of 5:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%#10.5X]\n", 42);
 	printf_len = printf("***printf: [%#10.5X]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print hex with width of 10 and precison of 5:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10.5X]\n", 42);
+	printf_len = printf("***printf: [%10.5X]\n", 42);
 	test_length(printf_len, ft_printf_len);
 	
 	ft_printf("\n\033[33mTest print hex with several value:\033[0m\n");
