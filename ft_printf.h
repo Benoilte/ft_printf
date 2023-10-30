@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:24:40 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 15:29:48 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:30:50 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int		ft_print_str(char *s, t_printf_lst *lst);
 int		ft_print_ptr(void *p, t_printf_lst *lst);
 int		ft_print_decimal(int n, t_printf_lst *lst);
 int		ft_print_int(int n, t_printf_lst *lst);
-int		ft_print_hex(int n, t_printf_lst *lst);
-int		ft_print_uint(unsigned int u, t_printf_lst *lst);
+int		ft_print_hex(unsigned int uint, t_printf_lst *lst);
+int		ft_print_uint(unsigned int uint, t_printf_lst *lst);
 int		ft_print_percent(t_printf_lst *lst);
 void	ft_print_width_fd(int width, int fd, int flag_zero);
+void	ft_print_precision_fd(int len, int fd);
 
 #endif
