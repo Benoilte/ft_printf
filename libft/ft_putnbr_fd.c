@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 09:26:30 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/24 10:35:35 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:50:28 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,15 @@ Writes the int 'n' on the file descriptor 'fd'
 */
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n == -2147483648)
-	{
-		ft_putstr_fd("-2147483648", fd);
-		return ;
-	}
-	else if (n == 0)
-	{
-		ft_putchar_fd('0', fd);
-		return ;
-	}
-	else if (n < 0)
+	long int	nbr;
+
+	nbr = n;
+	if (nbr < 0)
 	{
 		ft_putchar_fd('-', fd);
-		n *= -1;
+		nbr *= -1;
 	}
-	if (n > 9)
-		ft_putnbr_fd(n / 10, fd);
-	ft_putchar_fd(((n % 10) + 48), fd);
+	if (nbr > 9)
+		ft_putnbr_fd(nbr / 10, fd);
+	ft_putchar_fd(((nbr % 10) + 48), fd);
 }
