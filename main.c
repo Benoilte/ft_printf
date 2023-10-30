@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:47:48 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 15:45:13 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:12:51 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	test_print_percent(void);
 void	test_print_string(void);
 void	test_print_hex_lowercase(void);
 void	test_print_hex_uppercase(void);
+void	test_print_uint(void);
 
 int		main(void)
 {
@@ -25,6 +26,7 @@ int		main(void)
 	// test_print_string();
 	test_print_hex_lowercase();
 	test_print_hex_uppercase();
+	// test_print_uint();
 	// ft_printf("[%s]\n", ft_itoa_hex(-874521));
 	// printf("[%x]\n", -874521);
 	// int	count;
@@ -197,6 +199,11 @@ void	test_print_hex_lowercase(void)
 	printf_len = printf("***printf: [%#10.5x]\n", 42);
 	test_length(printf_len, ft_printf_len);
 	
+	printf("\n\033[33mTest print hex with width of 10 and precison of 5:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10.5x]\n", 42);
+	printf_len = printf("***printf: [%10.5x]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
 	ft_printf("\n\033[33mTest print hex with several value:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%10x]  [%-10x]  [%42x]  [%010x]  [%0#10x]  [%-#10x] [%-#10.5x]  [%#10.5x]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
 	printf_len = printf("***printf: [%10x]  [%-10x]  [%42x]  [%010x]  [%0#10x]  [%-#10x] [%-#10.5x]  [%#10.5x]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
@@ -249,8 +256,65 @@ void	test_print_hex_uppercase(void)
 	printf_len = printf("***printf: [%#10.5X]\n", 42);
 	test_length(printf_len, ft_printf_len);
 	
+	printf("\n\033[33mTest print hex with width of 10 and precison of 5:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10.5X]\n", 42);
+	printf_len = printf("***printf: [%10.5X]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
 	ft_printf("\n\033[33mTest print hex with several value:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%10X]  [%-10X]  [%42X]  [%010X]  [%0#10X]  [%-#10X] [%-#10.5X]  [%#10.5X]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
 	printf_len = printf("***printf: [%10X]  [%-10X]  [%42X]  [%010X]  [%0#10X]  [%-#10X] [%-#10.5X]  [%#10.5X]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
+	test_length(printf_len, ft_printf_len);
+}
+
+void	test_print_uint(void)
+{
+	int	ft_printf_len;
+	int	printf_len;
+
+	printf("\033[36m ----------- Test print unsigned int ----------- \033[0m\n");
+	ft_printf("\n\033[33mprint only a unsigne int:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%u]\n", 42);
+	printf_len = printf("***printf: [%u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print unsigne int with flag '-' width of 10:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%-10u]\n", 42);
+	printf_len = printf("***printf: [%-10u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print unsigne int with no flags and width of 10:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10u]\n", 42);
+	printf_len = printf("***printf: [%10u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print unsigne int with flag '0' flags and width of 10:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%010u]\n", 42);
+	printf_len = printf("***printf: [%010u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print unsigne int with flags '0' and width of 10:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%010u]\n", 42);
+	printf_len = printf("***printf: [%010u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print unsigne int with '-' and width of 10:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%-10u]\n", 42);
+	printf_len = printf("***printf: [%-10u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print unsigne int with '-', width of 10 and precison of 5:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%-10.5u]\n", 42);
+	printf_len = printf("***printf: [%-10.5u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print unsigne int with width of 10 and precison of 5:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10.5u]\n", 42);
+	printf_len = printf("***printf: [%10.5u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	ft_printf("\n\033[33mTest print unsigne int with several value:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10u]  [%-10u]  [%42u]  [%010u]  [%010u]  [%-10u] [%-10.5u]  [%10.5u]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
+	printf_len = printf("***printf: [%10u]  [%-10u]  [%42u]  [%010u]  [%010u]  [%-10u] [%-10.5u]  [%10.5u]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
 	test_length(printf_len, ft_printf_len);
 }
