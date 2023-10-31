@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:21:58 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 15:06:28 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:52:40 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ static int	ft_compute_nbr_len(int n, char *nbr, t_printf_lst *lst);
 static void	ft_print_nbr(char *nbr, int n, t_printf_lst *lst);
 static void	ft_print_plus_space_flag(int n, t_printf_lst *lst);
 
+/*
+Print decimal base 10 with its corresponding flag, width and precision.
+only flag '#' is NOT supported.
+*/
 int	ft_print_decimal(int n, t_printf_lst *lst)
 {
 	char	*nbr;
@@ -43,6 +47,10 @@ int	ft_print_decimal(int n, t_printf_lst *lst)
 	return (str_len);
 }
 
+/*
+compute the length of the number to be printed 
+according to its flags, width and precision
+*/
 static int	ft_compute_nbr_len(int n, char *nbr, t_printf_lst *lst)
 {
 	int		str_len;
@@ -59,6 +67,9 @@ static int	ft_compute_nbr_len(int n, char *nbr, t_printf_lst *lst)
 	return (str_len);
 }
 
+/*
+Print number with its corresponding flags
+*/
 static void	ft_print_nbr(char *nbr, int n, t_printf_lst *lst)
 {
 	int	i;
@@ -83,6 +94,9 @@ static void	ft_print_nbr(char *nbr, int n, t_printf_lst *lst)
 	ft_putstr_fd(nbr + i, 1);
 }
 
+/*
+Print flag ' ' or '+' if n >= 0;
+*/
 static void	ft_print_plus_space_flag(int n, t_printf_lst *lst)
 {
 	if (n < 0)

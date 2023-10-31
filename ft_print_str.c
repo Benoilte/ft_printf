@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:20:45 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 13:34:21 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:06:38 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 static void	ft_printstr_fd(char *s, int fd, int len);
 
+/*
+Print str with its corresponding flag, width and precision.
+only flag '-' width and precision are accepted.
+if precision < str_len => str is truncated.
+*/
 int	ft_print_str(char *s, t_printf_lst *lst)
 {
 	int		str_len;
