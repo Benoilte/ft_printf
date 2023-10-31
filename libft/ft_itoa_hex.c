@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:11:47 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 20:55:50 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:07:07 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_itoa_hex(long unsigned int luint)
 	luint_cpy = luint;
 	str_hex = "0123456789abcdef";
 	if (luint == 0)
-		str_len = 1;
+		return (ft_strdup("0"));
 	while (luint_cpy)
 	{
 		luint_cpy /= 16;

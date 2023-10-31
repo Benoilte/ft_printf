@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:14:01 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 11:28:53 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:07:21 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_itoa_uint(unsigned int uint)
 	str_len = 0;
 	uint_cpy = uint;
 	if (uint == 0)
-		str_len = 1;
+		return (ft_strdup("0"));
 	while (uint_cpy)
 	{
 		uint_cpy /= 10;

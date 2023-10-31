@@ -6,7 +6,7 @@
 #    By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 14:22:06 by bebrandt          #+#    #+#              #
-#    Updated: 2023/10/30 20:41:02 by bebrandt         ###   ########.fr        #
+#    Updated: 2023/10/31 14:27:47 by bebrandt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ SRCS	=	ft_printf.c ft_parse_format.c ft_is_flag.c ft_is_specifier.c \
 			ft_print_char.c ft_print_str.c ft_print_int.c ft_print_uint.c \
 			ft_print_arg.c ft_print_hex.c ft_print_ptr.c ft_print_percent.c \
 			ft_print_decimal.c ft_print_width_fd.c ft_print_precision_fd.c \
-			ft_print_hex_format.c
-
+			ft_print_hex_format.c set_lst.c
 
 SRCS_BONUS	=
 

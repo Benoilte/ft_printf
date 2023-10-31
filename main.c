@@ -6,11 +6,12 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:47:48 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 21:28:16 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:26:35 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <limits.h>
 
 void	test_print_char(void);
 void	test_print_percent(void);
@@ -27,7 +28,7 @@ void	test_print_ptr(void);
 int		main(void)
 {
 	test_print_char();
-	// test_print_percent();
+	test_print_percent();
 	test_print_string();
 	test_print_hex_lowercase();
 	test_print_hex_uppercase();
@@ -37,22 +38,6 @@ int		main(void)
 	test_print_integer_as_hex();
 	test_print_integer_as_oct();
 	test_print_ptr();
-	// ft_printf("[%s]\n", ft_itoa_hex(-874521));
-	// printf("[%x]\n", -874521);
-	// int	count;
-	// count = ft_printf("Hello%++00--  ##.c--%dWorld!\n", 33, 24);
-	// printf("[%25p]\n", &count);
-	// printf("[%25li]\n", (uintptr_t)&count);
-	// printf("[%25lx]\n", (uintptr_t)&count);
-	// printf("count: %d\n", count);
-	// printf("[%10.2s]\n", "hello");
-	// printf("[%+++++++0000+++00004d]\n", 42);
-	// printf("[%-4i]\n", 42);
-	// printf("[%10.8s]\n", "coucou");
-	// printf("\033[31m[%#-12x]\033[0m\n", -10);
-	// printf("[%010u]\n", 42);
-	// printf("[%10c]\n", 'a');
-	// printf("[%010%]\n");
 	return (0);
 }
 
@@ -93,29 +78,29 @@ void	test_print_char(void)
 
 void	test_print_percent(void)
 {
-	// int	ft_printf_len;
-	// int	printf_len;
+	int	ft_printf_len;
+	int	printf_len;
 
-	// printf("\n\033[36m ----------- Test print percent ----------- \033[0m\n");
-	// ft_printf("\n\033[33mprint only a percent:\033[0m\n");
-	// ft_printf_len = ft_printf("ft_printf: [%%]\n");
-	// printf_len = printf("***printf: [%%]\n");
-	// test_length(printf_len, ft_printf_len);
+	printf("\n\033[36m ----------- Test print percent ----------- \033[0m\n");
+	ft_printf("\n\033[33mprint only a percent:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%%]\n");
+	printf_len = printf("***printf: [%%]\n");
+	test_length(printf_len, ft_printf_len);
 
-	// printf("\n\033[33mTest print percent with flag '-' width of 10:\033[0m\n");
-	// ft_printf_len = ft_printf("ft_printf: [%-10%]\n");
-	// printf_len = printf("***printf: [%-10%]\n");
-	// test_length(printf_len, ft_printf_len);
+	printf("\n\033[33mTest print percent with flag '-' width of 10:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%-10%]\n");
+	printf_len = printf("***printf: [%-10%]\n");
+	test_length(printf_len, ft_printf_len);
 
-	// printf("\n\033[33mTest print percent with no flags and width of 10:\033[0m\n");
-	// ft_printf_len = ft_printf("ft_printf: [%10%]\n");
-	// printf_len = printf("***printf: [%10%]\n");
-	// test_length(printf_len, ft_printf_len);
+	printf("\n\033[33mTest print percent with no flags and width of 10:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10%]\n");
+	printf_len = printf("***printf: [%10%]\n");
+	test_length(printf_len, ft_printf_len);
 
-	// ft_printf("\n\033[33mTest print percent with several value:\033[0m\n");
-	// ft_printf_len = ft_printf("ft_printf: [%10%]  [%-10%]  [%42%]\n");
-	// printf_len = printf("***printf: [%10%]  [%-10%]  [%42%]\n");
-	// test_length(printf_len, ft_printf_len);
+	ft_printf("\n\033[33mTest print percent with several value:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10%]  [%-10%]  [%42%]\n");
+	printf_len = printf("***printf: [%10%]  [%-10%]  [%42%]\n");
+	test_length(printf_len, ft_printf_len);
 }
 
 void	test_print_string(void)
@@ -134,10 +119,10 @@ void	test_print_string(void)
 	printf_len = printf("***printf: [%s], comment ça va?\n", "coucou");
 	test_length(printf_len, ft_printf_len);
 
-	// ft_printf("\n\033[33mTest print string NULL value\033[0m\n");
-	// ft_printf_len = ft_printf("ft_printf: [%10s]\n", NULL);
-	// printf_len = printf("***printf: [%10s]\n", NULL);
-	// test_length(printf_len, ft_printf_len);
+	ft_printf("\n\033[33mTest print string NULL value\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%10s]\n", NULL);
+	printf_len = printf("***printf: [%10s]\n", NULL);
+	test_length(printf_len, ft_printf_len);
 
 	printf("\n\033[33mTest print string with flag '-' width of 10:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%-10s]\n", "coucou");
@@ -216,6 +201,41 @@ void	test_print_hex_lowercase(void)
 	printf_len = printf("***printf: [%10.5x]\n", 42);
 	test_length(printf_len, ft_printf_len);
 
+	printf("\n\033[33mTest print hex with no width value 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [ %x ]\n", 0);
+	printf_len = printf("***printf: [ %x ]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with no width value 0 and flag #:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [ %#x ]\n", 0);
+	printf_len = printf("***printf: [ %#x ]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.0x]\n", 0);
+	printf_len = printf("***printf: [%.0x]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with precision flag . but no hex value and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.x]\n", 0);
+	printf_len = printf("***printf: [%.x]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with width of 5 precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%5.0x]\n", 0);
+	printf_len = printf("***printf: [%5.0x]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with width of 5 flag '-' precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%-5.0x]\n", 0);
+	printf_len = printf("***printf: [%-5.0x]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with precision of 0 and value of 42:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.0x]\n", 42);
+	printf_len = printf("***printf: [%.0x]\n", 42);
+	test_length(printf_len, ft_printf_len);
+
 	ft_printf("\n\033[33mTest print hex with several value:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%10x]  [%-10x]  [%42x]  [%010x]  [%0#10x]  [%-#10x] [%-#10.5x]  [%#10.5x]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
 	printf_len = printf("***printf: [%10x]  [%-10x]  [%42x]  [%010x]  [%0#10x]  [%-#10x] [%-#10.5x]  [%#10.5x]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
@@ -273,6 +293,41 @@ void	test_print_hex_uppercase(void)
 	printf_len = printf("***printf: [%10.5X]\n", 42);
 	test_length(printf_len, ft_printf_len);
 
+	printf("\n\033[33mTest print hex with no width value 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [ %X ]\n", 0);
+	printf_len = printf("***printf: [ %X ]\n", 0);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print hex with no width value 0 and flag #:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [ %#X ]\n", 0);
+	printf_len = printf("***printf: [ %#X ]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.0X]\n", 0);
+	printf_len = printf("***printf: [%.0X]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with precision flag . but no hex value and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.X]\n", 0);
+	printf_len = printf("***printf: [%.X]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with width of 5 precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%5.0X]\n", 0);
+	printf_len = printf("***printf: [%5.0X]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with width of 5 flag '-' precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%-5.0X]\n", 0);
+	printf_len = printf("***printf: [%-5.0X]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print hex with precision of 0 and value of 42:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.0X]\n", 42);
+	printf_len = printf("***printf: [%.0X]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
 	ft_printf("\n\033[33mTest print hex with several value:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%10X]  [%-10X]  [%42X]  [%010X]  [%0#10X]  [%-#10X] [%-#10.5X]  [%#10.5X]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
 	printf_len = printf("***printf: [%10X]  [%-10X]  [%42X]  [%010X]  [%0#10X]  [%-#10X] [%-#10.5X]  [%#10.5X]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
@@ -318,6 +373,36 @@ void	test_print_uint(void)
 	printf("\n\033[33mTest print unsigned int with width of 10 and precison of 5:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%10.5u]\n", 42);
 	printf_len = printf("***printf: [%10.5u]\n", 42);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print unsigned int with no width value 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [ %u ]\n", 0);
+	printf_len = printf("***printf: [ %u ]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print unsigned int with precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.0u]\n", 0);
+	printf_len = printf("***printf: [%.0u]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print unsigned int with precision flag . but no unsigned int value and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.u]\n", 0);
+	printf_len = printf("***printf: [%.u]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print unsigned int with width of 5 precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%5.0u]\n", 0);
+	printf_len = printf("***printf: [%5.0u]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print unsigned int with width of 5 flag '-' precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%-5.0u]\n", 0);
+	printf_len = printf("***printf: [%-5.0u]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print unsigned int with precision of 0 and value of 42:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.0u]\n", 42);
+	printf_len = printf("***printf: [%.0u]\n", 42);
 	test_length(printf_len, ft_printf_len);
 
 	ft_printf("\n\033[33mTest print unsigned int with several value:\033[0m\n");
@@ -385,6 +470,86 @@ void	test_print_decimal(void)
 	printf("\n\033[33mTest print decimal with width of 10 and precison of 0 - 3 - 4 - 5:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%10.5d] [%10.d] [%10.3d] [%10.4d] [%10.5d]\n", 42, -42, -42, -42, -42);
 	printf_len = printf("***printf: [%10.5d] [%10.d] [%10.3d] [%10.4d] [%10.5d]\n", 42, -42, -42, -42, -42);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with width of 42 flag ' ', '0' and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [42% 042d42]\n", 0);
+	printf_len = printf("***printf: [42% 042d42]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with width of 42 flag '+', '0' and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [42%+042d42]\n", 0);
+	printf_len = printf("***printf: [42%+042d42]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.0d]\n", 0);
+	printf_len = printf("***printf: [%.0d]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with precision flag . but no decimal value and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.d]\n", 0);
+	printf_len = printf("***printf: [%.d]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with width of 5 precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%5.0d]\n", 0);
+	printf_len = printf("***printf: [%5.0d]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with width of 5 flag '-' precision of 0 and value of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%-5.0d]\n", 0);
+	printf_len = printf("***printf: [%-5.0d]\n", 0);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with precision of 0 and value of 42:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%.0d]\n", 42);
+	printf_len = printf("***printf: [%.0d]\n", 42);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag ' ', '0' and width of 36 and value of -843442790:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [^.^/% 036d^.^/]\n", -843442790);
+	printf_len = printf("***printf: [^.^/% 036d^.^/]\n", -843442790);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag '+' and precision of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: '%+.d', %+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf_len = printf("***printf: '%+.d', %+.d, %+.d, %+.d, %+.d, %+.d, %+.d, %+.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag '+' width 5 and precision of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: '%+5.d', %+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf_len = printf("***printf: '%+5.d', %+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag '+', '-' and precision of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: '%-+.d', %-+.d, %-+.d, %-+.d, %-+.d, %-+.d, %-+.d, %-+.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf_len = printf("***printf: '%-+.d', %-+.d, %-+.d, %-+.d, %-+.d, %-+.d, %-+.d, %-+.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag '+', '-' width 5 and precision of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: '%+-5.d', %+-5.d, %+-5.d, %+-5.d, %+-5.d, %+-5.d, %+-5.d, %+-5.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf_len = printf("***printf: '%+-5.d', %+-5.d, %+-5.d, %+-5.d, %+-5.d, %+-5.d, %+-5.d, %+-5.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag '+', '0' width of 5 and precision of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: '%+0.d', %+0.d, %+0.d, %+0.d, %+0.d, %+0.d, %+0.d, %+0.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf_len = printf("***printf: '%+0.d', %+0.d, %+0.d, %+0.d, %+0.d, %+0.d, %+0.d, %+0.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag '+', '0' width of 5 and precision of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: '%+05.d', %+05.d, %+05.d, %+05.d, %+05.d, %+05.d, %+05.d, %+05.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf_len = printf("***printf: '%+05.d', %+05.d, %+05.d, %+05.d, %+05.d, %+05.d, %+05.d, %+05.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag ' ' and precision of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: '% .d', % .d, % .d, % .d, % .d, % .d, % .d, % .d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf_len = printf("***printf: '% .d', % .d, % .d, % .d, % .d, % .d, % .d, % .d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	test_length(printf_len, ft_printf_len);
+
+	printf("\n\033[33mTest print decimal with flag ' ' width of 5 and precision of 0:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: '% 5.d', % 5.d, % 5.d, % 5.d, % 5.d, % 5.d, % 5.d, % 5.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf_len = printf("***printf: '% 5.d', % 5.d, % 5.d, % 5.d, % 5.d, % 5.d, % 5.d, % 5.d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
 	test_length(printf_len, ft_printf_len);
 
 	ft_printf("\n\033[33mTest print decimal with several value:\033[0m\n");
@@ -539,6 +704,16 @@ void	test_print_ptr(void)
 	printf("\n\033[33mTest print ptr with no flags and width of 25:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%25p]\n", &test3);
 	printf_len = printf("***printf: [%25p]\n", &test3);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print ptr with ptr null:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [%p]\n", (void *)0);
+	printf_len = printf("***printf: [%p]\n", (void *)0);
+	test_length(printf_len, ft_printf_len);
+	
+	printf("\n\033[33mTest print ptr with ptr null and width of 11:\033[0m\n");
+	ft_printf_len = ft_printf("ft_printf: [42%11p42]\n", (void *)0);
+	printf_len = printf("***printf: [42%11p42]\n", (void *)0);
 	test_length(printf_len, ft_printf_len);
 
 	ft_printf("\n\033[33mTest print ptr with several value:\033[0m\n");

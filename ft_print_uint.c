@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:23:09 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 16:08:28 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:32:56 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_print_uint(unsigned int uint, t_printf_lst *lst)
 	char	*ui_nbr;
 	int		str_len;
 
+	if (lst->precision == 0 && uint == 0)
+		return (ft_print_zero_precision_fd(lst, 1));
 	ui_nbr = ft_itoa_uint(uint);
 	str_len = ft_strlen(ui_nbr);
 	if (lst->precision > str_len)

@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:21:58 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 18:51:19 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:06:28 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 static int	ft_compute_nbr_len(int n, char *nbr, t_printf_lst *lst);
 static void	ft_print_nbr(char *nbr, int n, t_printf_lst *lst);
-static void ft_print_plus_space_flag(int n, t_printf_lst *lst);
+static void	ft_print_plus_space_flag(int n, t_printf_lst *lst);
 
 int	ft_print_decimal(int n, t_printf_lst *lst)
 {
 	char	*nbr;
 	int		str_len;
 
+	if (lst->precision == 0 && n == 0)
+		return (ft_print_zero_precision_fd(lst, 1));
 	nbr = ft_itoa(n);
 	str_len = ft_compute_nbr_len(n, nbr, lst);
 	if (lst->flag_minus && lst->width > str_len)
@@ -60,7 +62,7 @@ static int	ft_compute_nbr_len(int n, char *nbr, t_printf_lst *lst)
 static void	ft_print_nbr(char *nbr, int n, t_printf_lst *lst)
 {
 	int	i;
-	int nbr_len;
+	int	nbr_len;
 
 	i = 0;
 	nbr_len = (int)ft_strlen(nbr);
@@ -71,6 +73,8 @@ static void	ft_print_nbr(char *nbr, int n, t_printf_lst *lst)
 		if (lst->precision > (nbr_len - 1))
 			nbr_len--;
 	}
+	if (lst->flag_zero && n >= 0 && (lst->flag_space || lst->flag_plus))
+		nbr_len++;
 	ft_print_plus_space_flag(n, lst);
 	if (lst->precision > nbr_len)
 		ft_print_precision_fd(lst->precision - nbr_len, 1);
@@ -79,7 +83,7 @@ static void	ft_print_nbr(char *nbr, int n, t_printf_lst *lst)
 	ft_putstr_fd(nbr + i, 1);
 }
 
-static void ft_print_plus_space_flag(int n, t_printf_lst *lst)
+static void	ft_print_plus_space_flag(int n, t_printf_lst *lst)
 {
 	if (n < 0)
 		return ;
