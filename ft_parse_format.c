@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_format.c                                  :+:      :+:    :+:   */
+/*   ft_parse_str.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:28:31 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/27 17:18:41 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:07:22 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_get_flags_specifier(const char *format, int *i, t_printf_lst *lst);
+static void	ft_get_flags_specifier(const char *str, int *i, t_printf_lst *lst);
 static int	ft_get_digit(const char *s, int *i);
-void		set(t_printf_lst *lst);
+static void	ft_print_format(const char *str, int *i, int *len);
 
 int	ft_parse_format(const char *format, va_list args)
 {
-	int		len;
-	int		i;
+	int				len;
+	int				i;
 	t_printf_lst	*lst;
 
 	len = 0;
@@ -28,12 +28,7 @@ int	ft_parse_format(const char *format, va_list args)
 	{
 		if (format[i] == '%')
 		{
-			//printf("\nformat[%d]: %c\n", i, format[i]);
-			//printf("\nlst->specifier: %c\n", lst->specifier);
-			lst = (t_printf_lst *)malloc(sizeof(t_printf_lst));
-				if (!lst)
-					return (-1);
-			set(lst);
+			lst = set_new_lst(lst);
 			i++;
 			ft_get_flags_specifier(format + i, &i, lst);
 			if (!ft_is_specifier(lst->specifier))
@@ -43,45 +38,33 @@ int	ft_parse_format(const char *format, va_list args)
 			i++;
 		}
 		else
-		{
-			ft_putchar_fd(format[i], 1);
-			len++;
-			i++;
-		}
+			ft_print_format(format + i, &i, &len);
 	}
 	return (len);
 }
 
-static void	ft_get_flags_specifier(const char *format, int *i, t_printf_lst *lst)
+static void	ft_print_format(const char *str, int *i, int *len)
+{
+	ft_putchar_fd(*str, 1);
+	*i += 1;
+	*len += 1;
+}
+
+static void	ft_get_flags_specifier(const char *str, int *i, t_printf_lst *lst)
 {
 	int		j;
 
-	j = 0;
-	while (ft_is_flag(format[j]) && format[j] != '\0')
-	{	
-		if (format[j] == '0')
-			lst->flag_zero = 1;
-		if (format[j] == '+')
-			lst->flag_plus = 1;
-		if (format[j] == '-')
-			lst->flag_minus = 1;
-		if (format[j] == ' ')
-			lst->flag_space = 1;
-		if (format[j] == '#')
-			lst->flag_hash = 1;
-		j += 1;
-	}
-	if (ft_isdigit(format[j]))
-		lst->width = ft_get_digit(format + j, &j);
-	if (format[j] == '.')
+	j = ft_set_lst_flag(str, lst);
+	if (ft_isdigit(str[j]))
+		lst->width = ft_get_digit(str + j, &j);
+	if (str[j] == '.')
 	{
 		lst->precision = 0;
-		j += 1;
-		if (ft_isdigit(format[j]))
-			lst->precision = ft_get_digit(format + j, &j);
+		if (ft_isdigit(str[++j]))
+			lst->precision = ft_get_digit(str + j, &j);
 	}
-	if (ft_is_specifier(format[j]))
-		lst->specifier = format[j];
+	if (ft_is_specifier(str[j]))
+		lst->specifier = str[j];
 	*i += j;
 }
 
@@ -99,18 +82,5 @@ static int	ft_get_digit(const char *s, int *j)
 	num = ft_atoi(str_digit);
 	free(str_digit);
 	*j += end;
-	return(num);
-}
-
-void	set(t_printf_lst *lst)
-{
-	lst->flag_zero = 0;
-	lst->flag_plus = 0;
-	lst->flag_minus = 0;
-	lst->flag_space = 0;
-	lst->flag_hash = 0;
-	lst->width = 0;
-	lst->precision = -1;
-	lst->specifier = 0;
-	lst->next = NULL;
+	return (num);
 }

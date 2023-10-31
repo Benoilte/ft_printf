@@ -6,14 +6,14 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 20:33:41 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 20:34:59 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:34:52 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 static void	ft_print_hex_nbr(char *hex_nbr, int len, t_printf_lst *lst);
-static void ft_print_hash_flag(t_printf_lst *lst);
+static void	ft_print_hash_flag(char *hex_nbr, t_printf_lst *lst);
 
 int	ft_print_hex_format(char *hex_nbr, t_printf_lst *lst)
 {
@@ -22,7 +22,7 @@ int	ft_print_hex_format(char *hex_nbr, t_printf_lst *lst)
 	str_len = ft_strlen(hex_nbr);
 	if (lst->precision > str_len)
 		str_len = lst->precision;
-	if (lst->flag_hash)
+	if ((lst->flag_hash && hex_nbr[0] != '0') || (lst->specifier == 'p'))
 		str_len += 2;
 	if (lst->flag_minus && lst->width > str_len)
 	{
@@ -47,8 +47,7 @@ static void	ft_print_hex_nbr(char *hex_nbr, int len, t_printf_lst *lst)
 	int		i;
 
 	i = 0;
-
-	ft_print_hash_flag(lst);
+	ft_print_hash_flag(hex_nbr, lst);
 	if (lst->precision > (int)ft_strlen(hex_nbr))
 		ft_print_precision_fd(lst->precision - ft_strlen(hex_nbr), 1);
 	if (lst->width > len && lst->flag_zero)
@@ -63,9 +62,14 @@ static void	ft_print_hex_nbr(char *hex_nbr, int len, t_printf_lst *lst)
 	}
 }
 
-static void ft_print_hash_flag(t_printf_lst *lst)
+static void	ft_print_hash_flag(char *hex_nbr, t_printf_lst *lst)
 {
-	if (lst->flag_hash)
+	if (lst->specifier == 'p')
+	{
+		ft_putstr_fd("0x", 1);
+		return ;
+	}
+	if (lst->flag_hash && hex_nbr[0] != '0')
 	{
 		ft_putchar_fd('0', 1);
 		ft_putchar_fd(lst->specifier, 1);
