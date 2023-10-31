@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:24:40 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 14:43:47 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:34:55 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int				ft_print_zero_precision_fd(t_printf_lst *lst, int fd);
 
 t_printf_lst	*set_new_lst(t_printf_lst *lst);
 int				ft_set_lst_flag(const char *str, t_printf_lst *lst);
+void			ft_set_ptr_lst(t_printf_lst *lst);
 
 #endif

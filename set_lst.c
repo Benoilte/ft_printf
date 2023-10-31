@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:51:24 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 14:02:27 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:35:19 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,10 @@ int	ft_set_lst_flag(const char *str, t_printf_lst *lst)
 			lst->flag_hash = 1;
 	}
 	return (j);
+}
+
+void	ft_set_ptr_lst(t_printf_lst *lst)
+{
+	lst->flag_zero = 0;
+	lst->precision = -1;
 }

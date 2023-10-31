@@ -6,13 +6,11 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:21:25 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 13:43:51 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:35:34 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static void	ft_set_ptr_lst(t_printf_lst *lst);
 
 int	ft_print_ptr(void *p, t_printf_lst *lst)
 {
@@ -26,10 +24,4 @@ int	ft_print_ptr(void *p, t_printf_lst *lst)
 		hex_nbr = ft_itoa_hex(ptr);
 	ft_set_ptr_lst(lst);
 	return (ft_print_hex_format(hex_nbr, lst));
-}
-
-static void	ft_set_ptr_lst(t_printf_lst *lst)
-{
-	lst->flag_zero = 0;
-	lst->precision = -1;
 }
