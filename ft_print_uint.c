@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:23:09 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 13:32:56 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:09:16 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 static void	ft_print_ui_nbr(char *ui_nbr, t_printf_lst *lst);
 
+/*
+Print unsigned int with its corresponding flag, width and precision.
+only flag '0', '-', width and precision are accepted.
+*/
 int	ft_print_uint(unsigned int uint, t_printf_lst *lst)
 {
 	char	*ui_nbr;
@@ -43,6 +47,9 @@ int	ft_print_uint(unsigned int uint, t_printf_lst *lst)
 	return (str_len);
 }
 
+/*
+Print unsigned int according to its flags, width and precision.
+*/
 static void	ft_print_ui_nbr(char *ui_nbr, t_printf_lst *lst)
 {
 	int		i;

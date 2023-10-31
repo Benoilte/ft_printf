@@ -6,12 +6,15 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:17:33 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 13:32:27 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:13:41 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+Print precision filled with char '0' according to len.
+*/
 void	ft_print_precision_fd(int len, int fd)
 {
 	while (len)
@@ -21,6 +24,10 @@ void	ft_print_precision_fd(int len, int fd)
 	}
 }
 
+/*
+Only width with char ' ' or flag '+' or flag ' ' is printed 
+only if Precision == 0 and the int to print == 0;
+*/
 int	ft_print_zero_precision_fd(t_printf_lst *lst, int fd)
 {
 	if (lst->flag_minus)

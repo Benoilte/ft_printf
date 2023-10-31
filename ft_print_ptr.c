@@ -6,12 +6,16 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:21:25 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 17:35:34 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:03:31 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+Convert a pointer into a long unsigned int and convert it in hexadecimal format
+Only flag '-' and width are accepted.
+*/
 int	ft_print_ptr(void *p, t_printf_lst *lst)
 {
 	uintptr_t	ptr;

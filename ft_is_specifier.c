@@ -6,16 +6,15 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:00:32 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/26 11:06:48 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:41:15 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-check if 'c' char is a 'specifier' of printf.
+Return 1 if 'c' char is a 'specifier' of printf if not return 0.
 specifier handled are 'c' 's' 'p' 'd' 'i' 'u' 'x' 'X' '%'
-if 'c' is one of a specifier return 1 - otherwise return 0
 */
 int	ft_is_specifier(char c)
 {

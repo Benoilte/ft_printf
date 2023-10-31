@@ -6,19 +6,18 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:22:19 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 13:47:17 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:43:54 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+According to the specifier call the fonction to print it with the correct arg.
+Return the length of printed params. 
+*/
 int	ft_print_arg(va_list args, t_printf_lst *lst)
 {
-	if ((lst->flag_zero && lst->flag_minus)
-		|| (lst->flag_zero && lst->precision >= 0))
-		lst->flag_zero = 0;
-	if (lst->flag_space && lst-> flag_plus)
-		lst->flag_space = 0;
 	if (lst->specifier == 'c')
 		return (ft_print_char(va_arg(args, unsigned int), lst));
 	if (lst->specifier == 's')

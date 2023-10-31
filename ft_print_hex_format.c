@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 20:33:41 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 13:34:52 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:58:01 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 static void	ft_print_hex_nbr(char *hex_nbr, int len, t_printf_lst *lst);
 static void	ft_print_hash_flag(char *hex_nbr, t_printf_lst *lst);
 
+/*
+Print hexadecimal number with its corresponding flag, width and precision.
+Flag '+' and ' ' are NOT supported.
+*/
 int	ft_print_hex_format(char *hex_nbr, t_printf_lst *lst)
 {
 	int		str_len;
@@ -42,6 +46,10 @@ int	ft_print_hex_format(char *hex_nbr, t_printf_lst *lst)
 	return (str_len);
 }
 
+/*
+Print hexadecimal number with its corresponding flags.
+if specifier == 'X' print in uppercase letter.
+*/
 static void	ft_print_hex_nbr(char *hex_nbr, int len, t_printf_lst *lst)
 {
 	int		i;
@@ -62,6 +70,11 @@ static void	ft_print_hex_nbr(char *hex_nbr, int len, t_printf_lst *lst)
 	}
 }
 
+/*
+specifier 'p' => print 0x;
+specifier 'x' => print 0x;
+specifier 'X' => print 0X;
+*/
 static void	ft_print_hash_flag(char *hex_nbr, t_printf_lst *lst)
 {
 	if (lst->specifier == 'p')

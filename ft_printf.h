@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:24:40 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 17:34:55 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:28:14 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ typedef struct s_printf_lst
 }		t_printf_lst;
 
 int				ft_printf(const char *format, ...);
-int				ft_parse_format(const char *format, va_list args);
 int				ft_is_specifier(char c);
+int				ft_set_flag(const char *str, t_printf_lst *lst);
+void			ft_set_flag_priority(t_printf_lst *lst);
 int				ft_is_flag(char c);
 int				ft_print_arg(va_list args, t_printf_lst *lst);
 int				ft_print_char(char c, t_printf_lst *lst);
@@ -52,7 +53,6 @@ int				ft_print_zero_precision_fd(t_printf_lst *lst, int fd);
 // setting lst
 
 t_printf_lst	*set_new_lst(t_printf_lst *lst);
-int				ft_set_lst_flag(const char *str, t_printf_lst *lst);
 void			ft_set_ptr_lst(t_printf_lst *lst);
 
 #endif

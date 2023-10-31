@@ -6,12 +6,16 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:25:52 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 12:08:12 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:00:39 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+Convert n in hexadecimal number string and print it.
+Flag '+' and ' ' are NOT supported.
+*/
 int	ft_print_hex(unsigned int n, t_printf_lst *lst)
 {
 	char	*hex_nbr;
