@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:17:33 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 19:13:41 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/03 08:54:26 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_print_precision_fd(int len, int fd)
 }
 
 /*
-Only width with char ' ' or flag '+' or flag ' ' is printed 
-only if Precision == 0 and the int to print == 0;
+Only if Precision == 0 and the int to print == 0;
+Print width with char ' ' and print '+' and ' ' anccording to their flag
 */
 int	ft_print_zero_precision_fd(t_printf_lst *lst, int fd)
 {
