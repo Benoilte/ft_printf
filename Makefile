@@ -6,7 +6,7 @@
 #    By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 14:22:06 by bebrandt          #+#    #+#              #
-#    Updated: 2023/10/31 18:40:06 by bebrandt         ###   ########.fr        #
+#    Updated: 2023/11/03 09:02:54 by bebrandt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ SRCS	=	ft_printf.c flag_utils.c ft_is_specifier.c \
 			ft_print_arg.c ft_print_hex.c ft_print_ptr.c ft_print_percent.c \
 			ft_print_decimal.c ft_print_width_fd.c ft_print_precision_fd.c \
 			ft_print_hex_format.c set_lst.c
-
-SRCS_BONUS	=
 
 OBJS		:=	$(SRCS:.c=.o)
 
@@ -51,9 +49,6 @@ $(NAME):	$(OBJS)
 
 bonus:	all
 
-compile:	$(NAME)
-	$(CC) $(HDRS) $(CFLAGS) main.c -L . $(NAME) -o test_ft_printf
-
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS)
@@ -65,4 +60,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY: all bonus compile clean fclean re
+.PHONY: all bonus clean fclean re
