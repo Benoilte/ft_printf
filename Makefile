@@ -6,7 +6,7 @@
 #    By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 14:22:06 by bebrandt          #+#    #+#              #
-#    Updated: 2023/10/31 18:40:06 by bebrandt         ###   ########.fr        #
+#    Updated: 2024/01/18 12:19:13 by bebrandt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ SRCS	=	ft_printf.c flag_utils.c ft_is_specifier.c \
 			ft_print_arg.c ft_print_hex.c ft_print_ptr.c ft_print_percent.c \
 			ft_print_decimal.c ft_print_width_fd.c ft_print_precision_fd.c \
 			ft_print_hex_format.c set_lst.c
-
-SRCS_BONUS	=
 
 OBJS		:=	$(SRCS:.c=.o)
 
@@ -34,8 +32,6 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 AR			=	ar rcs
 
-LIB			=	ranlib
-
 RM			=	rm -f
 
 all: $(NAME)
@@ -47,7 +43,6 @@ $(NAME):	$(OBJS)
 	$(MAKE) -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT_NAME) $(NAME)
 	$(AR) $(NAME) $^
-	$(LIB) $(NAME)
 
 bonus:	all
 
