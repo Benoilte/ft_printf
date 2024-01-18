@@ -6,16 +6,16 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:42:12 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/30 20:39:47 by bebrandt         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:40:38 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include	<stdio.h>
-# include	<unistd.h>
-# include	<stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 // libft function corresponding to the man in libc
 
