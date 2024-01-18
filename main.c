@@ -6,12 +6,11 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:47:48 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/03 09:09:05 by bebrandt         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:04:55 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <limits.h>
 
 void	test_print_char(void);
 void	test_print_percent(void);
@@ -297,7 +296,7 @@ void	test_print_hex_uppercase(void)
 	ft_printf_len = ft_printf("ft_printf: [ %X ]\n", 0);
 	printf_len = printf("***printf: [ %X ]\n", 0);
 	test_length(printf_len, ft_printf_len);
-	
+
 	printf("\n\033[33mTest print hex with no width value 0 and flag #:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [ %#X ]\n", 0);
 	printf_len = printf("***printf: [ %#X ]\n", 0);
@@ -327,7 +326,7 @@ void	test_print_hex_uppercase(void)
 	ft_printf_len = ft_printf("ft_printf: [%.0X]\n", 42);
 	printf_len = printf("***printf: [%.0X]\n", 42);
 	test_length(printf_len, ft_printf_len);
-	
+
 	ft_printf("\n\033[33mTest print hex with several value:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%10X]  [%-10X]  [%42X]  [%010X]  [%0#10X]  [%-#10X] [%-#10.5X]  [%#10.5X]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
 	printf_len = printf("***printf: [%10X]  [%-10X]  [%42X]  [%010X]  [%0#10X]  [%-#10X] [%-#10.5X]  [%#10.5X]\n", 42, 24, 88, 32, -10, -1000, 255, 78632);
@@ -374,7 +373,7 @@ void	test_print_uint(void)
 	ft_printf_len = ft_printf("ft_printf: [%10.5u]\n", 42);
 	printf_len = printf("***printf: [%10.5u]\n", 42);
 	test_length(printf_len, ft_printf_len);
-	
+
 	printf("\n\033[33mTest print unsigned int with no width value 0:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [ %u ]\n", 0);
 	printf_len = printf("***printf: [ %u ]\n", 0);
@@ -705,12 +704,12 @@ void	test_print_ptr(void)
 	ft_printf_len = ft_printf("ft_printf: [%25p]\n", &test3);
 	printf_len = printf("***printf: [%25p]\n", &test3);
 	test_length(printf_len, ft_printf_len);
-	
+
 	printf("\n\033[33mTest print ptr with ptr null:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [%p]\n", (void *)0);
 	printf_len = printf("***printf: [%p]\n", (void *)0);
 	test_length(printf_len, ft_printf_len);
-	
+
 	printf("\n\033[33mTest print ptr with ptr null and width of 11:\033[0m\n");
 	ft_printf_len = ft_printf("ft_printf: [42%11p42]\n", (void *)0);
 	printf_len = printf("***printf: [42%11p42]\n", (void *)0);

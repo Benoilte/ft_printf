@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:24:40 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/10/31 18:28:14 by bebrandt         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:04:34 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <stdint.h>
+# include <limits.h>
 # include "libft/libft.h"
 
 typedef struct s_printf_lst
